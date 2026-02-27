@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Husrevhub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="logo.png" alt="Logo" class="logo">
+        </div>
+        <div class="header-right">
+            <button class="settings-btn" id="settingsBtn">
+                <img src="icons/settings.png" alt="Ayarlar">
+            </button>
+            <h1 class="title">
+                Hüsrev'im
+                <span class="heart">💜</span>
+            </h1>
+        </div>
+    </header>
+
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-content">
+            <h3>Ayarlar</h3>
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="theme-label">Karanlık Mod</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="photo-gallery" id="photoGallery">
+        <!-- Photos will be dynamically loaded here -->
+    </main>
+
+    <div class="fullscreen-viewer" id="fullscreenViewer">
+        <div class="fullscreen-container">
+            <img src="" alt="" id="fullscreenImage">
+            <button class="close-btn" id="closeBtn">✕</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
