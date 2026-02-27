@@ -18,9 +18,15 @@ const closeBtn = document.getElementById('closeBtn');
 // Initialize theme from localStorage
 function initTheme() {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    // Set dark mode as default if no theme is saved
+    if (savedTheme === null || savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         themeToggle.checked = true;
+        // Save dark mode as default
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.checked = false;
     }
 }
 
@@ -67,7 +73,7 @@ function loadPhotos() {
         const displayName = photoName.split('.')[0];
         
         photoItem.innerHTML = `
-            <img src="photos/${photoName}" alt="${displayName}" loading="lazy" onclick="openFullscreen('photos/${photoName}')">
+            <img src="photos/${photoName}" alt="${displayName}" loading="lazy">
             <div class="photo-info">
                 <span class="photo-name">${displayName}</span>
                 <button class="download-btn" onclick="downloadPhoto('${photoName}', '${displayName}')" title="İndir">
@@ -75,6 +81,14 @@ function loadPhotos() {
                 </button>
             </div>
         `;
+        
+        // Add click event listener to open fullscreen
+        photoItem.addEventListener('click', (e) => {
+            // Don't open fullscreen if download button was clicked
+            if (!e.target.closest('.download-btn')) {
+                openFullscreen(`photos/${photoName}`);
+            }
+        });
         
         photoGallery.appendChild(photoItem);
     });
